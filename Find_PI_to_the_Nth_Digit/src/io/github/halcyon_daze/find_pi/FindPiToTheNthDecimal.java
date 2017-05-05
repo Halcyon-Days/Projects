@@ -4,32 +4,59 @@ import java.math.BigDecimal;
 
 public class FindPiToTheNthDecimal {
 
+    private static final BigDecimal C = new BigDecimal(426880);
+    private static final BigDecimal M = new BigDecimal(545140134);
+    private static final BigDecimal L = new BigDecimal(13591409);
+    private static final BigDecimal X = new BigDecimal(640320).pow(3).negate();
+    
+
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        System.out.println(FindPiToNthDigit(10));
-        System.out.println(GetFactorial(12));
-        System.out.println(GetFactorial(7));
-        System.out.println(GetFactorial(4));
+        System.out.println(FindPiToNthDigit(3000));
     }
 
-    public static String FindPiToNthDigit(int NDecimals){
+    /*
+     * Takes a number and returns PI with that many decimal places by using Chudnovsky algorithm(https://en.wikipedia.org/wiki/Chudnovsky_algorithm) to calculate PI
+     * @param NDecimals number of decimals to return PI with
+     * @return piValue PI with NDecimals nubmer of decimals
+     * @author Christopher Chin
+     * 
+     * Works until about 3000 decimal places, and then begins to slow as more decimals are added
+     * formula is:  C*sqrt(10005) / (( (6i)! * (M*i +L)) / ( (3i)! * (i!)^3 * (-X) ))
+     */
+    public static BigDecimal FindPiToNthDigit(int NDecimals){
         
-        String piString = new String();
         BigDecimal piValue = new BigDecimal(0);
-        
-        for(int i = 0; i < 12; i++){
-            piValue = piValue.add(BigDecimal.valueOf(Math.pow((-1), i)*GetFactorial(6*i)*(13591409 + 545140134*i)) / ((GetFactorial(3*i))*Math.pow((GetFactorial(i)), 3)*Math.pow(640320, 3*i+3/2)));
+        BigDecimal piSum = new BigDecimal(0);
+        BigDecimal cPrecise = C.multiply(FindPreciseSqrt.GetPreciseSqrt(10005, NDecimals));
+                
+        //Calculates the summation, each sum adds 13~ precise decimal points
+        for(int i = 0; i < NDecimals/13 + 1; i++){
+            piSum = M.multiply(BigDecimal.valueOf(i));
+            piSum = piSum.add(L);
+            piSum = piSum.multiply(GetFactorial(6*i));
+            piSum = piSum.divide(X.pow(i), NDecimals + 1, BigDecimal.ROUND_HALF_UP);
+            piSum = piSum.divide(GetFactorial(3*i), NDecimals + 1, BigDecimal.ROUND_HALF_UP);
+            piSum = piSum.divide(GetFactorial(i).pow(3), NDecimals + 1, BigDecimal.ROUND_HALF_UP);
+            piValue = piValue.add(piSum);
         }
         
-        piValue = 1/(piValue*12);
-        System.out.println(piValue);
-        return Double.toString(piValue);
+        piValue = cPrecise.divide(piValue, NDecimals + 1, BigDecimal.ROUND_DOWN);
+        
+        return piValue;
     }
     
-    public static double GetFactorial(int n){
-        int factorial = 1;
+    /*
+     * Finds the factorial of a passed value as a BigDecimal 
+     * @param n number to find factorial of
+     * @return factorial of number
+     * @author Christopher Chin
+     * 
+     */
+    public static BigDecimal GetFactorial(int n){
+        BigDecimal factorial = new BigDecimal(1);
+        
         for(int i = 1; i <= n; i++){
-            factorial *= i;
+            factorial = factorial.multiply(BigDecimal.valueOf(i));
         }
         
         return factorial;
