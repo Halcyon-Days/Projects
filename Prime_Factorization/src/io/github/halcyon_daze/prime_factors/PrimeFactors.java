@@ -58,7 +58,7 @@ public class PrimeFactors {
         if(isPrimeNumber(n)) {
             primeFactorList.add(n);
         } else {
-            for(long i = 2; i < n ; i++) {
+            for(long i = 2; i < n/2 + 1 ; i++) {
                 if (n % i == 0) {
                     primeFactorList = findPrimeFactors(i, primeFactorList);
                     primeFactorList = findPrimeFactors(n/i, primeFactorList);
