@@ -123,7 +123,7 @@ public class CostOfFloor implements ActionListener{
      */
     
     public static float findCostOfTiles( float floorWidth, float floorHeight, float tileCost, float tileSize){
-        return tileCost * (int)(floorWidth/tileSize) * (int)(floorHeight/tileSize)
+        return tileCost * (int)(floorWidth/tileSize) * (int)(floorHeight/tileSize);
     }
 
 }
