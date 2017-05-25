@@ -111,5 +111,19 @@ public class CostOfFloor implements ActionListener{
         });
 
     }
+    
+    /**
+     * @param floorWidth width of floor in inches
+     * @param floorHeight height of floor in inches
+     * @param tileCost cost of each tile
+     * @param tileSize size of square tile in inches
+     * @return cost to cover floor in tiles
+     * @author Christopher Chin
+     * 
+     */
+    
+    public static float findCostOfTiles( float floorWidth, float floorHeight, float tileCost, float tileSize){
+        return tileCost * (int)(floorWidth/tileSize) * (int)(floorHeight/tileSize)
+    }
 
 }
