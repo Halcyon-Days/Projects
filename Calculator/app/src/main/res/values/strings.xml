@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="ONE">1</string>
+    <string name="TWO">2</string>
+    <string name="THREE">3</string>
+    <string name="FOUR">4</string>
+    <string name="FIVE">5</string>
+    <string name="SIX">6</string>
+    <string name="SEVEN">7</string>
+    <string name="EIGHT">8</string>
+    <string name="NINE">9</string>
+    <string name="ZERO">0</string>
+    <string name="PLUS">+</string>
+    <string name="MINUS">-</string>
+    <string name="SIGN">+/-</string>
+    <string name="DECIMAL">.</string>
+    <string name="EQUAL">=</string>
+    <string name="MULTI">X</string>
+    <string name="DIVIDE">/</string>
+    <string name="CE">CE</string>
+
+</resources>

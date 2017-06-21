@@ -2,6 +2,15 @@ package io.github.halcyon_daze.collatz_conjecture;
 
 public class Collatz {
 
+    /**
+     * @param n number to use collatz algorithim on
+     * @return number of steps it takes to reach 1
+     * 
+     * @author Christopher Chin
+     * @date June 21. 2017
+     * 
+     */
+    
     public static int getCollatz(int n){
         if (n <= 0) {
             System.out.println("Algoritim does not work for negative numbers!");
