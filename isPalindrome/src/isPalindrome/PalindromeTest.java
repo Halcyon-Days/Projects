@@ -14,6 +14,7 @@ public class PalindromeTest {
         assertEquals("racecar is a palindrome", true, Palindrome.isPalindrome("racecar"));       
         assertEquals("RAcECar is a palindrome", true, Palindrome.isPalindrome("RAcECar"));     
         assertEquals("raccar is a palindrome", true, Palindrome.isPalindrome("raccar")); 
+        assertEquals("   race    ca r is a palindrome", true, Palindrome.isPalindrome("   race    ca r"));
     }
 
 }
